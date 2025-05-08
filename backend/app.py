@@ -3,8 +3,8 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
 # from backend.firebase import config
-from backend.routes import (auth, consultUser, petRegister, petsListForUser,
-                            register)
+from backend.routes import (auth, editInfoUser, petRegister, petsListForUser,
+                            register, updatePassword, petProfile)
 
 # App
 app = FastAPI()
@@ -22,4 +22,9 @@ app.include_router(auth.router)
 app.include_router(register.router)
 app.include_router(petRegister.router)
 app.include_router(petsListForUser.router)
-app.include_router(consultUser.router)
+app.include_router(editInfoUser.router)
+app.include_router(updatePassword.router)
+app.include_router(
+    petsListForUser.router, prefix="/pets", tags=["pets"]
+)
+app.include_router(petProfile.router)
